@@ -13,7 +13,8 @@ dist/
 *.class
 
 .env
-
+.env.dev
+.env.prod
 # Compiled Python bytecode
 *.py[cod]
 
