@@ -21,9 +21,9 @@ const RankService = {
         },
       };
       try {
-        console.log("valorant headers",apiHeaders,"valorant url",valorantUrl);
+        // console.log("valorant headers",apiHeaders,"valorant url",valorantUrl);
         let currRank = await axios.get(valorantUrl, apiHeaders);
-        console.log("Valorant api response : ",currRank);
+        // console.log("Valorant api response : ",currRank);
         if (currRank?.data === "Either you entered an incorrect username or there could be some error with the backend. You can track the status on bit.ly/henrikapistatus"){
           return {
             status: false,
@@ -31,10 +31,8 @@ const RankService = {
           };
         }
         else{
-
-          
           return {
-            status: false,
+            status: true,
             rank: "Current Rank of player [" + originalIGN + "] - " + currRank?.data,
           };
         }

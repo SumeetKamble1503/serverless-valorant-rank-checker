@@ -1,7 +1,6 @@
 // Controller for setting a user's rank
 exports.HealthCheck = async (req, res) => {
   try {
-    console.log("HealthCheckkkkkkkkk");
     const result = {
       msg: "Heathcheck Success",
       status: true,
@@ -11,3 +10,4 @@ exports.HealthCheck = async (req, res) => {
     return res.status(500).json({ message: error.message });
   }
 };
+  

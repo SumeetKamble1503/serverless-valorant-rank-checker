@@ -5,7 +5,6 @@ const cors = require("cors");
 const app = express();
 module.exports.app = app;
 const customMiddleware = require("./src/middleware/customMiddleware");
-console.log("handlerssssss");
 
 app.use(
   bodyParser.urlencoded({

@@ -2,10 +2,7 @@ const express = require("express");
 const router = express.Router();
 const healthCheckController = require("../controllers/healthcheckController");
 const rankController = require("../controllers/rankController");
-console.log("routersssssss");
 router.get("/health-check", healthCheckController.HealthCheck);
-
-// rank apis
 
 // set valorant id api
 router.get("/valorant/set-ign", rankController.setRank);

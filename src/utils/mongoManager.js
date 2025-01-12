@@ -31,15 +31,9 @@ class MongoManager {
 
   async get_workspace_dbhost(workspace_id, cache = false) {
     let data = null;
-    console.log("Step 4 ----", this.mongoUri);
     const mongoClient = new MongoClient(this.mongoUri);
-    console.log("Step 5 ----");
     try {
-      console.log("Step 5.1 ----");
-
-      console.log("Step 5.2 ----");
       const mongodb = mongoClient.db("geta_core");
-      console.log("Step 5.3 ----");
       try {
         data = await mongodb
           .collection("workspace")
@@ -50,17 +44,11 @@ class MongoManager {
       } catch (e) {
         data = null;
       }
-      console.log(data);
       this.mongo_uri = data?.mongo_uri;
-      console.log(this.mongo_uri);
       if (this.mongo_uri) {
-        console.log("Step 6 ----");
         this.mongo_uri = this.mongo_uri;
-        // this.mongo_client = new MongoClient(mongo_uri);
       } else {
-        console.log("Step 7 ----");
         this.mongo_uri = mongoUri;
-        // this.mongo_client = new MongoClient(mongo_uri);
       }
     } catch (e) {
       this.mongo_uri = mongoUri;
@@ -72,13 +60,13 @@ class MongoManager {
 
   async find_one(collection_name, query, fields, sort_key = null) {
     let data = {};
-    console.log(
-      "+++++++++",
-      collection_name,
-      this.mongo_uri,
-      this.workspace_id,
-      "+++++++++++++"
-    );
+    // console.log(
+    //   "+++++++++",
+    //   collection_name,
+    //   this.mongo_uri,
+    //   this.workspace_id,
+    //   "+++++++++++++"
+    // );
     //
     try {
       //
