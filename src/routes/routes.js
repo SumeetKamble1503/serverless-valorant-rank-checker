@@ -1,17 +1,20 @@
-
-const express = require("express");
-const router = express.Router();
-const healthCheckController = require("../controllers/healthcheckController");
-const rankController = require("../controllers/rankController");
-router.get("/health-check", healthCheckController.HealthCheck);
+import { Router } from "express";
+const router = Router();
+import { HealthCheck } from "../controllers/healthcheckController.js";
+import {
+  setRank,
+  getRankByIGN,
+  getRankByUserId,
+} from "../controllers/rankController.js";
+router.get("/health-check", HealthCheck);
 
 // set valorant id api
-router.get("/valorant/set-ign", rankController.setRank);
+router.get("/valorant/set-ign", setRank);
 
 // get valorant rank by ign
-router.get("/valorant/get-rank-by-ign", rankController.getRankByIGN);
+router.get("/valorant/get-rank-by-ign", getRankByIGN);
 
 // get valorant rank by yt-userid
-router.get("/valorant/get-rank-by-userid", rankController.getRankByUserId);
+router.get("/valorant/get-rank-by-userid", getRankByUserId);
 
-module.exports = router;
+export default router;

@@ -1,7 +1,7 @@
-const { RankService } = require("../services/rankService");
+import { RankService } from "../services/rankService.js";
 
 // Controller for getting the rank of a user
-exports.getRankByIGN = async (req, res) => {
+export async function getRankByIGN(req, res) {
   const ign = req.query?.ign || null;
   if (!ign) {
     return res.status(400).json("Valorant IGN is required like Tenz#777");
@@ -12,9 +12,9 @@ exports.getRankByIGN = async (req, res) => {
   } catch (error) {
     return res.status(404).json(error.message);
   }
-};
+}
 
-exports.getRankByUserId = async (req, res) => {
+export async function getRankByUserId(req, res) {
   const userId = req.query?.user_id;
   if (!userId) {
     return res.status(400).json({ message: "UserId is required" });
@@ -25,10 +25,11 @@ exports.getRankByUserId = async (req, res) => {
   } catch (error) {
     return res.status(404).json(error.message);
   }
-};
+}
 
 // Controller for setting a user's rank
-exports.setRank = async (req, res) => {
+
+export async function setRank(req, res) {
   const ign = req.query?.user_name;
   const userId = req.query?.user_id;
   if (!ign || !userId) {
@@ -42,4 +43,6 @@ exports.setRank = async (req, res) => {
   } catch (error) {
     return res.status(500).json(error.message);
   }
-};
+}
+
+// export default { setRank, getRankByIGN, getRankByUserId };

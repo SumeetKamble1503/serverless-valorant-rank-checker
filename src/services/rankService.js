@@ -1,6 +1,9 @@
 import MongoManager from "../utils/mongoManager.js";
 import axios from "axios";
 
+// const MongoManager = require("../utils/mongoManager");
+// const axios = require("axios");
+
 // Define the RankService object
 const RankService = {
   // This function simulates fetching a rank based on the username
@@ -24,16 +27,26 @@ const RankService = {
         // console.log("valorant headers",apiHeaders,"valorant url",valorantUrl);
         let currRank = await axios.get(valorantUrl, apiHeaders);
         // console.log("Valorant api response : ",currRank);
-        if (currRank?.data === "Either you entered an incorrect username or there could be some error with the backend. You can track the status on bit.ly/henrikapistatus"){
+        if (
+          currRank?.data ===
+          "Either you entered an incorrect username or there could be some error with the backend. You can track the status on bit.ly/henrikapistatus"
+        ) {
           return {
             status: false,
-            rank: "Error [" + originalIGN + "] - " + "Either you entered an incorrect username or there could be some error with the backend",
+            rank:
+              "Error [" +
+              originalIGN +
+              "] - " +
+              "Either you entered an incorrect username or there could be some error with the backend",
           };
-        }
-        else{
+        } else {
           return {
             status: true,
-            rank: "Current Rank of player [" + originalIGN + "] - " + currRank?.data,
+            rank:
+              "Current Rank of player [" +
+              originalIGN +
+              "] - " +
+              currRank?.data,
           };
         }
       } catch {
@@ -67,7 +80,7 @@ const RankService = {
         await mongoCoreWorkspaceDb.close();
         return `${rank?.rank}`;
       } else {
-        if(rankObj?.last_updated_rank != null){
+        if (rankObj?.last_updated_rank != null) {
           return `Couldn't fetch Current Rank. Last Updated rank in the system of player [${rankObj?.in_game_name}] - ${rankObj?.last_updated_rank}`;
         }
         return rank?.rank;

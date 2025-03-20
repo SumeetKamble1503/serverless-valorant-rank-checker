@@ -1,24 +1,27 @@
-const serverless = require("serverless-http");
-const bodyParser = require("body-parser");
-const express = require("express");
-const cors = require("cors");
+import serverless from "serverless-http";
+// import { urlencoded, json } from "body-parser";
+import pkg from "body-parser";
+const { urlencoded, json } = pkg;
+import express, { json as _json } from "express";
+import cors from "cors";
 const app = express();
-module.exports.app = app;
-const customMiddleware = require("./src/middleware/customMiddleware");
+const _app = app;
+export { _app as app };
+import customMiddleware from "./src/middleware/customMiddleware.js";
 
 app.use(
-  bodyParser.urlencoded({
+  urlencoded({
     extended: true,
     limit: "1000mb",
     parameterLimit: 50000000,
   })
 );
 
-app.use(bodyParser.json({ limit: "1000mb" }));
-app.use(express.json());
+app.use(json({ limit: "1000mb" }));
+app.use(_json());
 app.use(cors());
 app.use(customMiddleware);
-const routes = require("./src/routes/routes");
+import routes from "./src/routes/routes.js";
 
 app.use("/api/v1", routes);
 
@@ -30,7 +33,7 @@ app.all("*", (req, res) => {});
 
 const handler = serverless(app);
 
-module.exports.handler = async (event, context, callback) => {
+const _handler = async (event, context, callback) => {
   /** Immediate response for WarmUP plugin */
   if (event.source === "serverless-plugin-warmup") {
     console.log("WarmUP - Lambda is warm!");
@@ -41,3 +44,4 @@ module.exports.handler = async (event, context, callback) => {
   const result = await handler(event, context);
   return result;
 };
+export { _handler as handler };

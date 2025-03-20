@@ -1,12 +1,9 @@
-
 service: valorant-stream-helper
 
 provider:
   name: aws
   runtime: nodejs18.x
   region: ap-south-1
-  environment:
-    TABLE_NAME: valorant-mappings
 
 functions:
   app:
@@ -17,21 +14,21 @@ functions:
       - http: ANY /
       - http: ANY /{proxy+}
 
-# resources:
-#   Resources:
-#     MappingsTable:
-#       Type: AWS::DynamoDB::Table
-#       Properties:
-#         TableName: ${self:provider.environment.TABLE_NAME}
-#         AttributeDefinitions:
-#           - AttributeName: userId
-#             AttributeType: S
-#         KeySchema:
-#           - AttributeName: userId
-#             KeyType: HASH
-#         BillingMode: PAY_PER_REQUEST
+# llingMode: PAY_PER_REQUEST
+
+# custom:
+#   deployConcurrency: 1
+
+# custom:
+#   esbuild:
+#     bundle: true
+#     target: "node18"
+#     platform: "node"
+#     external:
+#       - aws-sdk
 
 plugins:
   - serverless-offline
   - serverless-dotenv-plugin
   - serverless-plugin-warmup
+  # - serverless-esbuild
