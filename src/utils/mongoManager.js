@@ -1,5 +1,8 @@
-const { MongoClient } = require("mongodb");
-const dotenv = require("dotenv").config();
+// const { MongoClient } = require("mongodb");
+// const dotenv = require("dotenv").config();
+
+import { MongoClient } from "mongodb";
+// import dotenv from "dotenv"
 
 const mongoUri = process.env.MONGODB_URI ?? "mongodb://localhost:27017";
 
@@ -317,4 +320,4 @@ class MongoManager {
   }
 }
 
-module.exports = MongoManager;
+export default MongoManager;

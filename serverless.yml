@@ -16,8 +16,12 @@ functions:
 
 # llingMode: PAY_PER_REQUEST
 
-# custom:
-#   deployConcurrency: 1
+custom:
+  deployConcurrency: 1
+  logRetentionInDays: 7
+  prune:
+    automatic: true
+    number: 3
 
 # custom:
 #   esbuild:
@@ -31,4 +35,5 @@ plugins:
   - serverless-offline
   - serverless-dotenv-plugin
   - serverless-plugin-warmup
+  - serverless-prune-plugin
   # - serverless-esbuild
